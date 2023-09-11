@@ -1,0 +1,625 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: "Swaggerhub API"
+  description: "API for YII2 test "
+paths:
+
+  /api/v1/language/index:
+    get:
+      tags:
+        - Languages
+      summary: Get all languages
+      operationId: getLanguages
+      security:
+        - QueryParamAuth: [ ]
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Language'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /api/v1/language/get{id}:
+    get:
+      tags:
+        - Languages
+      summary: Get a language by ID
+      operationId: getLanguageById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of language to return
+          schema:
+            type: integer
+      security:
+        - QueryParamAuth: [ ]
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Language'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /api/v1/language/delete/{id}:
+    delete:
+      tags:
+        - Languages
+      summary: Delete a language by ID
+      operationId: deleteLanguage
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of language to delete
+          schema:
+            type: integer
+      security:
+        - QueryParamAuth: [ ]
+      responses:
+        '200':
+          description: successful operation
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /api/v1/language/create:
+    post:
+      tags:
+        - Languages
+      summary: Create a new language
+      operationId: createLanguage
+      security:
+        - QueryParamAuth: [ ]
+      requestBody:
+        description: Language object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Language'
+      responses:
+        '201':
+          description: Language created
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /api/v1/language/update/{id}:
+    put:
+      tags:
+        - Languages
+      summary: Update an existing language
+      operationId: updateLanguage
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of language to update
+          schema:
+            type: integer
+      security:
+        - QueryParamAuth: [ ]
+      requestBody:
+        description: Language object that needs to be updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Language'
+      responses:
+        '200':
+          description: Language updated
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+
+
+  /api/v1/genre/index:
+    get:
+      tags:
+        - Genres
+      summary: Get all genres
+      operationId: getGenres
+      security:
+        - QueryParamAuth: [ ]
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Genre'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /api/v1/genre/get/{id}:
+    get:
+      tags:
+        - Genres
+      summary: Get a genre by ID
+      operationId: getGenreById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of genre to return
+          schema:
+            type: integer
+      security:
+        - QueryParamAuth: [ ]
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Genre'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /api/v1/genre/delete/{id}:
+    delete:
+      tags:
+        - Genres
+      summary: Delete a genre by ID
+      operationId: deleteGenre
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of genre to delete
+          schema:
+            type: integer
+      security:
+        - QueryParamAuth: [ ]
+      responses:
+        '200':
+          description: Successful operation
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /api/v1/genre/create:
+    post:
+      tags:
+        - Genres
+      summary: Create a new genre
+      operationId: createGenre
+      security:
+        - QueryParamAuth: [ ]
+      requestBody:
+        description: Genre object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Genre'
+      responses:
+        '201':
+          description: Genre created
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /api/v1/genre/update/{id}:
+    put:
+      tags:
+        - Genres
+      summary: Update an existing genre
+      operationId: updateGenre
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of genre to update
+          schema:
+            type: integer
+      security:
+        - QueryParamAuth: [ ]
+      requestBody:
+        description: Genre object that needs to be updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Genre'
+      responses:
+        '200':
+          description: Genre updated
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+
+
+  /api/v1/author/index:
+    get:
+      tags:
+        - Authors
+      summary: Get all authors
+      operationId: getAuthors
+      security:
+        - QueryParamAuth: [ ]
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /api/v1/author/get{id}:
+    get:
+      tags:
+        - Authors
+      summary: Get an author by ID
+      operationId: getAuthorById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of author to return
+          schema:
+            type: integer
+      security:
+        - QueryParamAuth: [ ]
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /api/v1/author/delete/{id}:
+    delete:
+      tags:
+        - Authors
+      summary: Delete an author by ID
+      operationId: deleteAuthor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of author to delete
+          schema:
+            type: integer
+      security:
+        - QueryParamAuth: [ ]
+      responses:
+        '200':
+          description: Successful operation
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /api/v1/author/create:
+    post:
+      tags:
+        - Authors
+      summary: Create a new author
+      operationId: createAuthor
+      security:
+        - QueryParamAuth: [ ]
+      requestBody:
+        description: Author object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+      responses:
+        '201':
+          description: Author created
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /api/v1/author/update/{id}:
+    put:
+      tags:
+        - Authors
+      summary: Update an existing author
+      operationId: updateAuthor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of author to update
+          schema:
+            type: integer
+      security:
+        - QueryParamAuth: [ ]
+      requestBody:
+        description: Author object that needs to be updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+      responses:
+        '200':
+          description: Author updated
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+
+  /api/v1/book/index:
+    get:
+      tags:
+        - Books
+      summary: Get all books
+      operationId: getBooks
+      security:
+        - QueryParamAuth: [ ]
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /api/v1/book/get{id}:
+    get:
+      tags:
+        - Books
+      summary: Get a book by ID
+      operationId: getBookById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of book to return
+          schema:
+            type: integer
+      security:
+        - QueryParamAuth: [ ]
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /api/v1/book/delete/{id}:
+    delete:
+      tags:
+        - Books
+      summary: Delete a book by ID
+      operationId: deleteBook
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of book to delete
+          schema:
+            type: integer
+      security:
+        - QueryParamAuth: [ ]
+      responses:
+        '200':
+          description: Successful operation
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /api/v1/book/create:
+    post:
+      tags:
+        - Books
+      summary: Create a new book
+      operationId: createBook
+      security:
+        - QueryParamAuth: [ ]
+      requestBody:
+        description: Book object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '201':
+          description: Book created
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /api/v1/book/update/{id}:
+    put:
+      tags:
+        - Books
+      summary: Update an existing book
+      operationId: updateBook
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of book to update
+          schema:
+            type: integer
+      security:
+        - QueryParamAuth: [ ]
+      requestBody:
+        description: Book object that needs to be updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '200':
+          description: Book updated
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+
+components:
+  schemas:
+    Language:
+      type: object
+      properties:
+        languageName:
+          type: string
+        isoCode:
+          type: string
+        status:
+          type: integer
+          default: 1
+          description: Language status
+      xml:
+        name: Language
+    Genre:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        genreName:
+          type: string
+        status:
+          type: integer
+          default: 1
+          description: Статус жанра
+      xml:
+        name: Genre
+    Author:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        birthdate:
+          type: string
+          format: date
+        biography:
+          type: string
+        status:
+          type: integer
+          default: 1
+      xml:
+        name: Author
+    Book:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        authorId:
+          type: integer
+        languageId:
+          type: integer
+        genreId:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        numPages:
+          type: integer
+        status:
+          type: integer
+          default: 1
+      xml:
+        name: Book
+    UnauthorizedError:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            name:
+              type: string
+            message:
+              type: string
+            code:
+              type: integer
+            status:
+              type: integer
+            type:
+              type: string
+
+  securitySchemes:
+    QueryParamAuth:
+      type: apiKey
+      in: query
+      name: authKey
+
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/HOVHANNESABOVYANWORK/AGA/1.0.0
+  - description: Production Server
+    url: https://armaga.site
