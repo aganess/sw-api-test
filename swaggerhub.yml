@@ -28,7 +28,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UnauthorizedError'
-  /api/v1/language/get{id}:
+  /api/v1/language/get/{id}:
     get:
       tags:
         - Languages
@@ -417,7 +417,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UnauthorizedError'
-  /api/v1/book/get{id}:
+  /api/v1/book/get/{id}:
     get:
       tags:
         - Books
@@ -541,9 +541,6 @@ components:
     Genre:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
         genreName:
           type: string
         status:
@@ -555,9 +552,6 @@ components:
     Author:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
         name:
           type: string
         birthdate:
@@ -573,9 +567,6 @@ components:
     Book:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
         authorId:
           type: integer
         languageId:
